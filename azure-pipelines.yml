@@ -4,8 +4,17 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'sc-docker'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+stages:
+- stage: 'Terraform_Setup'
+  displayName: 'Terraform Install and Artifacts export'
+  jobs: 
+  - job: 'Install'
+    displayName: 'Terraform Install job'
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'sc-docker'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
