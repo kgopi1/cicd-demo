@@ -18,6 +18,7 @@ stages:
       name: dockertask
       inputs:
         containerRegistry: 'sc-docker'
+        container: kgopi1/cicd-demo
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: kgopi1/cicd-demo
