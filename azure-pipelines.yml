@@ -1,0 +1,11 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'sc-docker'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
