@@ -29,4 +29,4 @@ stages:
         container: kgopi1/cicd-demo
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        tags: v1
+        tags: prod_v1
