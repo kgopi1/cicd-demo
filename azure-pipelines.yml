@@ -1,32 +1,31 @@
 trigger:
-- master
+  - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
 
 stages:
-- stage: 'DockerBuildandPush'
-  displayName: 'Docker Build and Push'
-  jobs: 
-  - job: 'Install'
-    displayName: 'Docker Build job'
-    pool:
-      vmImage: 'ubuntu-16.04'
-    steps:
-    
-    - task: Docker@2
-      displayName: 'Docker Login'
-      name: dockerlogin
-      inputs:
-        containerRegistry: 'sc-docker'
-        command: login
-    - task: Docker@2 
-      displayName: 'Docker Build Task'
-      name: dockertask
-      inputs:
-        containerRegistry: 'sc-docker'
-        repository: kgopi1/cicd-demo
-        container: kgopi1/cicd-demo
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
-        tags: prod_v1
+  - stage: "DockerBuildandPush"
+    displayName: "Docker Build and Push"
+    jobs:
+      - job: "Install"
+        displayName: "Docker Build job"
+        pool:
+          vmImage: "ubuntu-16.04"
+        steps:
+          - task: Docker@2
+            displayName: "Docker Login"
+            name: dockerlogin
+            inputs:
+              containerRegistry: "sc-docker"
+              command: login
+          - task: Docker@2
+            displayName: "Docker Build Task"
+            name: dockertask
+            inputs:
+              containerRegistry: "sc-docker"
+              repository: kgopi1/cicd-demo
+              container: kgopi1/cicd-demo
+              command: "buildAndPush"
+              Dockerfile: "**/Dockerfile"
+              tags: prod_v1
