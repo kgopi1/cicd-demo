@@ -1,8 +1,7 @@
 trigger:
   - master
 
-pool:
-  vmImage: "ubuntu-latest"
+pool: Azure Pipelines
 
 stages:
   - stage: "DockerBuildandPush"
@@ -10,8 +9,6 @@ stages:
     jobs:
       - job: "Install"
         displayName: "Docker Build job"
-        pool:
-          vmImage: "ubuntu-16.04"
         steps:
           - task: Bash@3
             displayName: Get-Date-forTag
